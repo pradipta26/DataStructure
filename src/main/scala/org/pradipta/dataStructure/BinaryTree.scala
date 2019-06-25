@@ -21,7 +21,7 @@ class BinaryTree[T <: MathNode[T] ](val num: List[T]) {
   setNodes
 
   //Public Methods
-  def printTree = printNode(rootNode)
+  def printTree : Unit = printNode(rootNode)
 
   def addNode (value: T): Unit = {
     val node = new  TreeNode[T](List(value))
@@ -34,11 +34,11 @@ class BinaryTree[T <: MathNode[T] ](val num: List[T]) {
   }
 
   //Private Methods
-  private def setNodes = treeNodes.tail.foreach(node => setNodePosition[T](rootNode, node))
+  private def setNodes : Unit = treeNodes.tail.foreach(node => setNodePosition[T](rootNode, node))
 
   private def setNodePosition[T <: {def ==(that : List[T]) : Boolean; def <(that : List[T]) : Boolean; def >(that : List[T]): Boolean}]
                         (parentNode : TreeNode[T], node: TreeNode[T], depth : Int = 1): Unit = {
-    //println (parentNode.value.head + " And " + node.value.headOption.get)// + node.value.head.getClass)
+
     if (parentNode.value.headOption.get == node.value){
       println ("Duplicate node found " + parentNode.value.headOption.get)
     }
